@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+        <script src="js/angular.min.js" type="text/javascript"></script>
+        <script src="js/jquery-3.1.0.min.js" type="text/javascript"></script>
+        <script src="js/jscontroller.js" type="text/javascript"></script>
+        <script src="js/uibehaviour.js" type="text/javascript"></script>
+        <meta charset="utf-8">
+        <title>CRUD</title>
+
+    </head>
+
+
+    <body>
+
+        <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            CRUD APP Recruiting Test
+            </div>
+        </div>
+        </nav>
+
+        <div class="">
+            <div ng-app="productApp">
+                <div ng-controller="crudController">
+                    <div class="row">
+                        <!--left column: list-->
+                        <div class="col-md-6">
+                            <div class="scrollable-div">
+
+                                <ul>
+                                    <li ng-repeat="product in products">
+                                        <div class="card-view">
+                                            <div class="product-id">
+                                                <span>ID: {{product.id}}</span>
+                                            </div>    
+                                            <div class="card-row">
+                                                <span>Description: {{product.description}}</span>
+                                            </div>
+                                            <div class="card-row">
+                                                <span> Category: {{product.category}}</span>  
+                                            </div>
+                                            <div class="card-row">
+                                                <span>Price: {{product.price | currency}}</span>   
+                                            </div>                                        
+                                                         
+                                            <div class="card-row">
+                                                <a href="#" ng-click="remove(product)">Delete</a>
+                                                <span>/</span>
+                                                <a href="#" class="edit-record" ng-click="edit(product)">Edit</a>                                                
+                                            </div>
+
+                                        </div>
+                                        
+
+                                        
+
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div>
+                                
+                            </div>
+                        </div>
+
+                        <!--right column: edit fields-->
+                        <div class="popup col-md-6">
+                                                    
+                            <div class="popup-form">
+                                <label for="id-product">Id:</label>
+                                <input type="text" class="form-control" id="id-product" ng-model="current.id" value="{{current.id}}">
+                                <label for="desc-product">Description:</label>
+                                <input type="text" class="form-control" id="desc-product" ng-model="current.description" value="{{current.description}}">
+                                <label for="cat-product">Category:</label>
+                                <input type="text" class="form-control" id="cat-product" ng-model="current.category" value="{{current.category}}">
+                                <label for="price-product">Price:</label>
+                                <input type="text" class="form-control" id="price-product" ng-model="current.price" value="{{current.price}}">
+                                <hr>
+                                <button class="btn-primary form-control" ng-click="addNew(current)">Add a new product</button>
+                                <button class="btn-default form-control" ng-click="clearData()">Clear data</button>
+                            </div>
+
+
+                        </div>
+                    </div><!--row-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="send-order">
+                                <span>Total: {{getTotal()}}</span>
+                                <button class="btn-primary send-order-btn">Send order</button>
+                            </div>
+                            
+
+                        </div>
+                    </div><!--row-->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="sent-dialog">
+            <p>
+                Order received!
+            </p>
+            <button class="btn-primary dismiss-dialog">Close this dialog</button>
+
+        </div>    
+    </body>
+
+
+</html>
